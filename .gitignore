@@ -1,0 +1,6 @@
+# Byte-compiled / optimized / DLLs
+__pycache__/
+*.pyc
+
+# PyCharm local configurations
+.idea/
