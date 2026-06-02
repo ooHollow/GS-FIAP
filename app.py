@@ -5,7 +5,7 @@ import json
 
 def main() -> None:
     with open('config.json', 'r') as arquivo:
-        config_sensores: Dict[str, Dict[str, float]] = json.load(arquivo)
+        config_sensores: Dict[str, Dict[str, Any]] = json.load(arquivo)
 
     CORES_STATUS: Dict[str, str] = {
         "Normal": "\033[92mNormal\033[0m",

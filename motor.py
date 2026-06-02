@@ -1,15 +1,11 @@
 from collections import deque
-from typing import Dict, Tuple
-from regras import RegraValidacao, ValidacaoLimiteSimples, ValidacaoLimiteDuplo
+from typing import Dict, Tuple, Any
+import regras
 
 class MotorAnalise:
-    def __init__(self, config: Dict[str, Dict[str, float]]) -> None:
+    def __init__(self, config: Dict[str, Dict[str, Any]]) -> None:
         self.historico: Dict[str, deque[float]] = {sensor: deque(maxlen=3) for sensor in config.keys()}
         self.config: Dict[str, Dict[str, float]] = config
-        self.regras: Dict[str, RegraValidacao] = {
-            "limite_simples": ValidacaoLimiteSimples(),
-            "limite_duplo": ValidacaoLimiteDuplo()
-        }
 
     def adicionar_leitura(self, sensor: str, valor: float) -> Tuple[float, str]:
         buffer: deque[float] = self.historico[sensor]
@@ -17,11 +13,10 @@ class MotorAnalise:
         media: float = sum(buffer) / len(buffer)
 
         info_limite: Dict[str, float] = self.config[sensor]
+        nome_classe: str = info_limite["regra_classe"]
+        valores: Dict[str, float] = info_limite["parametros"]
 
-        if "alerta_min_inf" in info_limite:
-            tipo: str = "limite_duplo"
-        else:
-            tipo = "limite_simples"
+        instancia_regra = getattr(regras, nome_classe)()
 
-        status: str = self.regras[tipo].validar(media, info_limite)
+        status: str = instancia_regra.validar(media, valores)
         return media, status
