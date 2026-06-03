@@ -1,6 +1,6 @@
 import unittest
 from typing import Dict, Any, Tuple
-from motor import MotorAnalise
+from src.motor import MotorAnalise
 
 class TestMotorAnaliseDefensivo(unittest.TestCase):
     def setUp(self) -> None:

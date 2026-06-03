@@ -1,6 +1,6 @@
 import unittest
 from typing import Dict
-from regras import ValidacaoLimiteSimples, ValidacaoLimiteDuplo
+from src.regras import ValidacaoLimiteSimples, ValidacaoLimiteDuplo
 
 class TestRegrasValidacao(unittest.TestCase):
     def setUp(self) -> None:

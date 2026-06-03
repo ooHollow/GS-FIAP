@@ -1,10 +1,14 @@
+from pathlib import Path
 from dados import logs_telemetria
 from typing import Dict, Any, List
 from motor import MotorAnalise
 import json
 
 def main() -> None:
-    with open('config.json', 'r') as arquivo:
+    diretorio: Path = Path(__file__).parent.resolve()
+    config: Path = diretorio.parent / "config.json"
+
+    with open(config, 'r') as arquivo:
         config_sensores: Dict[str, Dict[str, Any]] = json.load(arquivo)
 
     CORES_STATUS: Dict[str, str] = {
