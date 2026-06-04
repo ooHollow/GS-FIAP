@@ -1,5 +1,6 @@
 from collections import deque
 from typing import Dict, Tuple, Any
+from .regras import RegraValidacao
 from src import regras
 
 class MotorAnalise:
@@ -24,7 +25,7 @@ class MotorAnalise:
             nome_classe: str = info_limite["regra_classe"]
             valores: Dict[str, float] = info_limite["parametros"]
             try:
-                instancia_regra = getattr(regras, nome_classe)()
+                instancia_regra: RegraValidacao = getattr(regras, nome_classe)()
             except AttributeError:
                 return media, "Dado corrompido"
 
