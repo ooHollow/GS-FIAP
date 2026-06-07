@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import Dict, Any, List
-from .dados import logs_telemetria
-from .motor import MotorAnalise
+from src.dados import logs_telemetria
+from src.motor import MotorAnalise
 import json
 
 def main() -> None:

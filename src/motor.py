@@ -1,6 +1,6 @@
 from collections import deque
 from typing import Dict, Tuple, Any
-from .regras import RegraValidacao
+from src.regras import RegraValidacao
 from src import regras
 
 class MotorAnalise:
