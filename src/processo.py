@@ -22,13 +22,17 @@ def processar_telemetria(logs: list, motor: MotorAnalise) -> dict[str, tuple[lis
             valor_numerico: float = float(log["leitura"])
             media, status = motor.adicionar_leitura(nome_sensor, valor_numerico)
 
-            if nome_sensor not in historico_sensores:
-                historico_sensores[nome_sensor] = ([], [])
-                contadores_sensores[nome_sensor] = 0
+            if status == "Dado corrompido":
+                if nome_sensor not in historico_sensores:
+                    pass
+            else:
+                if nome_sensor not in historico_sensores:
+                    historico_sensores[nome_sensor] = ([], [])
+                    contadores_sensores[nome_sensor] = 0
 
-            contadores_sensores[nome_sensor] += 1
-            historico_sensores[nome_sensor][0].append(contadores_sensores[nome_sensor])
-            historico_sensores[nome_sensor][1].append(media)
+                contadores_sensores[nome_sensor] += 1
+                historico_sensores[nome_sensor][0].append(contadores_sensores[nome_sensor])
+                historico_sensores[nome_sensor][1].append(media)
 
         except (ValueError, KeyError, TypeError):
             nome_sensor = log["sensor"] if isinstance(log, dict) and "sensor" in log else "Desconhecido"
