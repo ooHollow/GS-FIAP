@@ -6,7 +6,7 @@ from src.dados import logs_telemetria
 from src.motor import MotorAnalise
 from src.graphic import gerar_grafico
 from src.processo import processar_telemetria
-from src.interface import exibir_menu_selecao
+from src.interface import interface
 
 def main() -> None:
     diretorio: Path = Path(__file__).parent.resolve()
@@ -18,8 +18,8 @@ def main() -> None:
     motor: MotorAnalise = MotorAnalise(config_sensores)
     logs: List[Any] = logs_telemetria
 
-    historico_sensores, _ = processar_telemetria(logs, motor)
-    sensor_escolhido: str = exibir_menu_selecao(historico_sensores)
+    historico_sensores = processar_telemetria(logs, motor)
+    sensor_escolhido: str = interface(historico_sensores)
 
     if sensor_escolhido:
         indices, medias = historico_sensores[sensor_escolhido]

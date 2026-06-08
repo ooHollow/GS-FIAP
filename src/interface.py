@@ -7,7 +7,7 @@ CORES_STATUS: Dict[str, str] = {
     "Dado corrompido": "\033[90mDado corrompido\033[0m"
 }
 
-def exibir_menu_selecao(historico_sensores: Dict[str, Tuple[List[int], List[float]]]) -> str:
+def interface(historico_sensores: Dict[str, Tuple[List[int], List[float]]]) -> str:
     print("\n" + "=" * 60)
     print("      \033[96mINTERFACE DE SELEÇÃO DE GRÁFICOS DE TELEMETRIA\033[0m      ")
     print("=" * 60)
