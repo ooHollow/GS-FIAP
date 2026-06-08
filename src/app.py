@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Dict, Any, List, Tuple
+from typing import Dict, Any, List
 import json
 
 from src.dados import logs_telemetria
