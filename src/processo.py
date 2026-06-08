@@ -38,4 +38,4 @@ def processar_telemetria(logs: List[Any], motor: MotorAnalise) -> Tuple[Dict[str
         status_cor: str = CORES_STATUS.get(status, status)
         print(f"Sensor: {nome_sensor:<20} | Média Móvel: {media:<6.2f} | Status: {status_cor}")
 
-    return historico_sensores, contadores_sensores
+    return historico_sensores
